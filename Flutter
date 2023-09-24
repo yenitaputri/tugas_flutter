@@ -1,0 +1,106 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Data tentang foto dan nama
+    final List<Map<String, String>> data = [
+      {
+        "name": "Avta",
+        "Jabatan": "CEO",
+        "imageUrl":
+            "https://i.pinimg.com/564x/8e/ca/57/8eca575870dfacf658a75461edb7472a.jpg"
+      },
+      {
+        "name": "Zivanya",
+        "Jabatan": "HRD",
+        "imageUrl":
+            "https://i.pinimg.com/564x/21/db/b4/21dbb47837df7e8f3dd91bf546e5489c.jpg"
+      },
+      {
+        "name": "John",
+        "Jabatan": "Manager Pemasaran",
+        "imageUrl":
+            "https://i.pinimg.com/564x/22/9f/9e/229f9e14a45dcb5ddf14de29b459375b.jpg"
+      },
+      {
+        "name": "Alya",
+        "Jabatan": "Bendahara",
+        "imageUrl":
+            "https://i.pinimg.com/564x/1d/e3/d5/1de3d52ca28d07ef2b62ba427cc1a7ec.jpg"
+      },
+      {
+        "name": "Anya",
+        "Jabatan": "Sekretaris",
+        "imageUrl":
+            "https://i.pinimg.com/564x/b6/3b/df/b63bdfe57627b26e8a0ccd79bd619002.jpg"
+      },
+      // Tambahkan data lain sesuai kebutuhan Anda
+    ];
+    return MaterialApp(
+      title: 'Project Flutter',
+      home: Scaffold(
+          backgroundColor: Color(0xff63bcef),
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text('Daftar Nama dan Jabatan'),
+            backgroundColor: Color(0xffecdd15),
+            leading: IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {},
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          body: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final item = data[index];
+              return Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                ),
+                child: ListTile(
+                  leading: ClipOval(
+                    child: Image.network(
+                      item["imageUrl"] ?? "",
+                      width: 50, // Sesuaikan dengan ukuran yang Anda inginkan
+                      height: 50, // Sesuaikan dengan ukuran yang Anda inginkan
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: Text(
+                    item["name"] ?? "",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(shadows: [
+                      Shadow(
+                        color: Color(0xff071016), //tambahan elemen keindahan
+                        blurRadius: 2,
+                        offset: Offset(1, 1),
+                      )
+                    ]),
+                  ),
+                  subtitle: Text(
+                    item["Jabatan"] ?? "",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic, //kemiringan suatu text
+                    ),
+                  ),
+                ),
+              );
+            },
+          )),
+    );
+  }
+}
